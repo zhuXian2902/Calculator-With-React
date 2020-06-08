@@ -104,13 +104,19 @@ class Buttons extends React.Component {
 			});
 		} else {
 			let total = this.compute(this.state.exp, this.state.ans);
-			console.log(total);
-			this.setState((prev) => {
-				return {
-					ans: total,
-					exp: '',
-				};
-			});
+			if (isNaN(total) || typeof total === 'undefined')
+				this.setState(() => {
+					return { ans: 'Error', exp: '' };
+				});
+			// console.log(total);
+			else {
+				this.setState((prev) => {
+					return {
+						ans: total,
+						exp: '',
+					};
+				});
+			}
 		}
 	};
 
