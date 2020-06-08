@@ -31,7 +31,7 @@ class Buttons extends React.Component {
 	compute = (str, ans) => {
 		let numArray = [ans];
 		let operators = [];
-		console.log(numArray);
+		// console.log(numArray);
 		for (let i = 0; i < str.length; i++) {
 			if (str[i] === '(') {
 				operators.push(str[i]);
@@ -88,7 +88,7 @@ class Buttons extends React.Component {
 	};
 
 	addExp = (e, num) => {
-		console.log(num !== '=' && num !== 'C');
+		// console.log(num !== '=' && num !== 'C');
 		if (num !== '=' && num !== 'C') {
 			this.setState((prev) => {
 				return {
