@@ -87,7 +87,11 @@ class Buttons extends React.Component {
 		}
 		// console.log(numArray);
 		// console.log(operators);
-		return numArray.pop();
+		let n2 = numArray.pop();
+		let n1 = numArray.pop();
+		console.log(n1, n2);
+		if (n1 !== 0) return 'Error';
+		return n2;
 	};
 
 	addExp = (e, num) => {
@@ -127,7 +131,8 @@ class Buttons extends React.Component {
 					{this.props.numArray.map((num) => (
 						<button onClick={(e) => this.addExp(e, num)} className="btn" key={num}>
 							{num}
-						</button> //<Button key={num} btnValue={num} />
+						</button>
+						// <Button addExp={this.addExp} key={num} btnValue={num} />
 					))}
 				</div>
 			</div>
@@ -135,8 +140,13 @@ class Buttons extends React.Component {
 	}
 }
 
-// <button onClick={this.addone}>+1</button>
-// <h1>sum : {this.state.count}</h1>
+// const Button = (props) => {
+// 	return (
+// 		<button onClick={(e) => props.addExp(e, props.btnValue)} className="btn">
+// 			{props.btnValue}
+// 		</button>
+// 	);
+// };
 
 class Calculator extends React.Component {
 	render() {
