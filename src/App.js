@@ -31,7 +31,7 @@ class Buttons extends React.Component {
 	compute = (str, ans) => {
 		let numArray = [ans];
 		let operators = [];
-
+		console.log(numArray);
 		for (let i = 0; i < str.length; i++) {
 			if (str[i] === '(') {
 				operators.push(str[i]);
@@ -63,33 +63,26 @@ class Buttons extends React.Component {
 					let operator = operators.pop();
 					numArray.push(this.operation(num1, num2, operator));
 				}
-				// console.log(str[i]);
 				operators.push(str[i]);
 			}
-			// console.log(str[i]);
-			// console.log(numArray);
-			// console.log(operators);
 		}
 		while (operators.length > 0) {
 			let num2 = numArray.pop();
 			let num1 = numArray.pop();
 
 			if (operators[operators.length - 1] === '(') operators.pop();
-			// console.log(num1, num2, operators);
 			if (operators.length === 0) {
 				if (num1 === 0) return num2;
 				else return 'Error';
 			}
 			let operator = operators.pop();
 			numArray.push(this.operation(num1, num2, operator));
-			// console.log(numArray);
-			// console.log(operators);
 		}
-		// console.log(numArray);
-		// console.log(operators);
+
 		let n2 = numArray.pop();
+		if (numArray.length === 0) return n2;
 		let n1 = numArray.pop();
-		console.log(n1, n2);
+		// console.log(n1, n2);
 		if (n1 !== 0) return 'Error';
 		return n2;
 	};
@@ -129,10 +122,10 @@ class Buttons extends React.Component {
 				</div>
 				<div className="btns">
 					{this.props.numArray.map((num) => (
-						<button onClick={(e) => this.addExp(e, num)} className="btn" key={num}>
-							{num}
-						</button>
-						// <Button addExp={this.addExp} key={num} btnValue={num} />
+						// <button onClick={(e) => this.addExp(e, num)} className="btn" key={num}>
+						// 	{num}
+						// </button>
+						<Button addExp={this.addExp} key={num} btnValue={num} />
 					))}
 				</div>
 			</div>
@@ -140,13 +133,13 @@ class Buttons extends React.Component {
 	}
 }
 
-// const Button = (props) => {
-// 	return (
-// 		<button onClick={(e) => props.addExp(e, props.btnValue)} className="btn">
-// 			{props.btnValue}
-// 		</button>
-// 	);
-// };
+const Button = (props) => {
+	return (
+		<button onClick={(e) => props.addExp(e, props.btnValue)} className="btn">
+			{props.btnValue}
+		</button>
+	);
+};
 
 class Calculator extends React.Component {
 	render() {
