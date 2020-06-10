@@ -13,6 +13,12 @@ export default class Buttons extends React.Component {
 		};
 	}
 
+	/** somw good test cases failing on eval
+	 * a. (1-2
+	 * b. (1--2)
+	 * c. (1-(-2))
+	 */
+
 	pre = (operator) => {
 		if (operator === '*' || operator === '/' || operator === '%') return 2;
 		else if (operator === '+' || operator === '-') return 1;
@@ -102,7 +108,14 @@ export default class Buttons extends React.Component {
 				};
 			});
 		} else {
-			let total = this.compute(this.state.exp, this.state.ans);
+			let expression = this.state.exp;
+			let { ans } = this.state;
+			if (this.state.exp.includes('--'))
+				expression = this.state.exp.replace('--', '+');
+			if (this.state.exp.includes('-(-'))
+				expression = expression.replace('-(-', '+(');
+			console.log(expression);
+			let total = this.compute(expression, ans);
 			if (isNaN(total) || typeof total === 'undefined')
 				this.setState(() => {
 					return { ans: 'Error', exp: '' };
