@@ -109,12 +109,15 @@ export default class Buttons extends React.Component {
 			});
 		} else {
 			let expression = this.state.exp;
+			// console.log(expression);
 			let { ans } = this.state;
-			if (this.state.exp.includes('--'))
-				expression = this.state.exp.replace('--', '+');
-			if (this.state.exp.includes('-(-'))
-				expression = expression.replace('-(-', '+(');
-			console.log(expression);
+			expression = expression.replace('--', '+');
+			expression = expression.replace('-(-', '+(');
+			expression = expression.replace('-+', '-');
+			expression = expression.replace('+-', '-');
+			expression = expression.replace('-(+', '-(');
+			expression = expression.replace('+(-', '-(');
+			// console.log(expression);
 			let total = this.compute(expression, ans);
 			if (isNaN(total) || typeof total === 'undefined')
 				this.setState(() => {
