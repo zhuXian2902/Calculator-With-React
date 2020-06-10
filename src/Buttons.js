@@ -93,8 +93,7 @@ export default class Buttons extends React.Component {
 	};
 
 	addExp = (e, num) => {
-		// console.log(num !== '=' && num !== 'C');
-		if (num !== '=' && num !== 'C') {
+		if (num !== '=' && num !== 'C' && num !== 'CE') {
 			this.setState((prev) => {
 				return {
 					exp: prev.exp + num,
@@ -106,6 +105,11 @@ export default class Buttons extends React.Component {
 					exp: '',
 					ans: 0,
 				};
+			});
+		} else if (num === 'CE') {
+			// let { exp } = this.state;
+			this.setState((prev) => {
+				return { exp: this.state.exp.slice(0, -1) };
 			});
 		} else {
 			let expression = this.state.exp;

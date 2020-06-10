@@ -10,7 +10,7 @@ class Calculator extends React.Component {
 			'C',
 			'/',
 			'*',
-			'%',
+			'CE',
 			1,
 			2,
 			3,
@@ -26,6 +26,7 @@ class Calculator extends React.Component {
 			0,
 			'(',
 			')',
+			'%',
 		];
 		return (
 			<div>
